@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NutritionService} from '../nutrition.service'
+declare  const responsiveVoice: any;
 
 @Component({
   selector: 'app-home',
@@ -12,11 +13,13 @@ export class HomeComponent implements OnInit {
   nutritionInfo =null;
   searchValue='';
   getValue(): void{
+    responsiveVoice.speak('Nutition value of' + this.searchValue);
     this.nutritionService.getNutritionValue(this.searchValue).subscribe(data => {
       this.nutritionInfo = data;
       console.log(this.nutritionInfo);
     })
   }
+
 
   ngOnInit() {
   }

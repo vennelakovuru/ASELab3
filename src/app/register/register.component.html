@@ -1,5 +1,4 @@
 <form>
-    <label>Register here</label>
   <div class="form-group">
     <input type="text" class="form-control" name='lastName' placeholder="Last Name" [(ngModel)]="lastName">
   </div>
@@ -15,5 +14,5 @@
   <div class="form-group">
     <input type="date" class="form-control" id="date">
   </div>
-  <button type="submit" class="btn btn-primary" (click)="storeData()">Submit</button>
+  <button type="submit" class="btn btn-primary" (click)="storeData()" routerLink="/login">Register</button>
 </form>
