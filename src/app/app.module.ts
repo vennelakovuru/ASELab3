@@ -10,7 +10,6 @@ import {FormsModule} from "@angular/forms";
 import {NutritionService} from './nutrition.service'
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
-
 @NgModule({
   declarations: [
     AppComponent,
