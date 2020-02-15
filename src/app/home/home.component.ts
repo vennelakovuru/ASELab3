@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {NutritionService} from '../nutrition.service'
+import {ifStmt} from "@angular/compiler/src/output/output_ast";
 
+declare var $: any;
 declare const responsiveVoice: any;
 
 @Component({
@@ -15,12 +17,16 @@ export class HomeComponent implements OnInit {
 
   nutritionInfo = null;
   searchValue = '';
+  prevSearchValue = '';
+  searchDone: boolean = false;
 
   getValue(): void {
-    responsiveVoice.speak('Nutition value of' + this.searchValue);
+    this.nutritionInfo = null;
+    this.prevSearchValue = this.searchValue;
+    responsiveVoice.speak('' + this.searchValue);
     this.nutritionService.getNutritionValue(this.searchValue).subscribe(data => {
       this.nutritionInfo = data;
-      console.log(this.nutritionInfo);
+      this.searchDone = true;
     })
   }
 

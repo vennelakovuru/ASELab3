@@ -8,15 +8,21 @@ import { Component, OnInit } from '@angular/core';
 export class RegisterComponent implements OnInit {
 
   constructor() { }
-  lastName=[];
+  lastName='';
   firstName='';
   emailId='';
   password='';
-
-
+  registerSuccess: boolean = false;
+  registerAttempted:boolean= false;
 
   storeData(){
-    localStorage.setItem('users', JSON.stringify(this.lastName));
+    this.registerAttempted = true;
+    if(this.emailId == '' || this.password == ''){
+      this.registerSuccess = false;
+    } else {
+      localStorage.setItem(this.emailId, this.password);
+      this.registerSuccess = true;
+    }
   }
 
   ngOnInit() {

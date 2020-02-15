@@ -14,5 +14,9 @@
   <div class="form-group">
     <input type="date" class="form-control" id="date">
   </div>
-  <button type="submit" class="btn btn-primary" (click)="storeData()" routerLink="/login">Register</button>
+  <button type="submit" class="btn btn-primary float-right" (click)="storeData()">Register</button>
+  Already Registered ? <label class="btn-link" routerLink="/login">Login here</label>
+
+  <div *ngIf="registerSuccess" style="color: green">Successfully registered ! Please login to use Food Calculator!</div>
+  <div *ngIf="!registerSuccess && registerAttempted" style="color: red">Please enter the details to register !!</div>
 </form>

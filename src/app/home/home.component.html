@@ -2,58 +2,59 @@
   <input type="text" style="margin-right:5px" [(ngModel)]="searchValue" placeholder="Enter Item">
   <button type="button" class="btn-primary" (click)="getValue()">Get Nutrition Value</button>
 </div>
-<div>
-  <table class="table table-sm" *ngIf="nutritionInfo != null">
-    <tr><h2 class="text-dark">Nutrition Value of {{searchValue}} </h2></tr>
-    <tr>
-      <th>Serving size</th>
-      <td>{{nutritionInfo.hits[0].fields.nf_serving_size_qty}} cup /
-        {{nutritionInfo.hits[0].fields.nf_serving_weight_grams}} g
-      </td>
-    </tr>
-    <tr>
-      <th>Calories</th>
-      <td>{{nutritionInfo.hits[0].fields.nf_calories}}</td>
-    </tr>
-    <tr>
-      <th>Total Fat</th>
-      <td>{{nutritionInfo.hits[0].fields.nf_total_fat}} g</td>
-    </tr>
-    <tr>
-      <th>Saturated Fat</th>
-      <td>{{nutritionInfo.hits[0].fields.nf_saturated_fat}} g</td>
-    </tr>
-    <tr>
-      <th>Cholesterol</th>
-      <td>{{nutritionInfo.hits[0].fields.nf_cholesterol}} mg</td>
-    </tr>
-    <tr>
-      <th>Sodium</th>
-      <td>{{nutritionInfo.hits[0].fields.nf_sodium}} mg</td>
-    </tr>
-    <tr>
-      <th>Sugars</th>
-      <td>{{nutritionInfo.hits[0].fields.nf_sugars}} g</td>
-    </tr>
-    <tr>
-      <th>Protein</th>
-      <td>{{nutritionInfo.hits[0].fields.nf_protein}} g</td>
-    </tr>
-    <tr>
-      <th>Vitamin A</th>
-      <td>{{nutritionInfo.hits[0].fields.nf_vitamin_a_dv}} %</td>
-    </tr>
-    <tr>
-      <th>Vitamin C</th>
-      <td>{{nutritionInfo.hits[0].fields.nf_vitamin_c_dv}} %</td>
-    </tr>
-    <tr>
-      <th>Calcium</th>
-      <td>{{nutritionInfo.hits[0].fields.nf_calcium_dv}} %</td>
-    </tr>
-    <tr>
-      <th>Iron</th>
-      <td>{{nutritionInfo.hits[0].fields.nf_iron_dv}} %</td>
-    </tr>
-  </table>
+<div *ngIf="searchDone &&  searchValue == '' && nutritionInfo == null || nutritionInfo.total_hits == 0 " style="color: red">
+  Please enter a valid item!!
 </div>
+<table class="table table-sm" *ngIf="nutritionInfo != null && nutritionInfo.total_hits != 0 && searchValue == prevSearchValue">
+  <tr><h2 class="text-dark">Nutrition Value of {{searchValue}}</h2></tr>
+  <tr>
+    <th>Serving size</th>
+    <td>{{nutritionInfo.hits[0].fields.nf_serving_size_qty}} cup /
+      {{nutritionInfo.hits[0].fields.nf_serving_weight_grams}} g
+    </td>
+  </tr>
+  <tr>
+    <th>Calories</th>
+    <td>{{nutritionInfo.hits[0].fields.nf_calories}}</td>
+  </tr>
+  <tr>
+    <th>Total Fat</th>
+    <td>{{nutritionInfo.hits[0].fields.nf_total_fat}} g</td>
+  </tr>
+  <tr>
+    <th>Saturated Fat</th>
+    <td>{{nutritionInfo.hits[0].fields.nf_saturated_fat}} g</td>
+  </tr>
+  <tr>
+    <th>Cholesterol</th>
+    <td>{{nutritionInfo.hits[0].fields.nf_cholesterol}} mg</td>
+  </tr>
+  <tr>
+    <th>Sodium</th>
+    <td>{{nutritionInfo.hits[0].fields.nf_sodium}} mg</td>
+  </tr>
+  <tr>
+    <th>Sugars</th>
+    <td>{{nutritionInfo.hits[0].fields.nf_sugars}} g</td>
+  </tr>
+  <tr>
+    <th>Protein</th>
+    <td>{{nutritionInfo.hits[0].fields.nf_protein}} g</td>
+  </tr>
+  <tr>
+    <th>Vitamin A</th>
+    <td>{{nutritionInfo.hits[0].fields.nf_vitamin_a_dv}} %</td>
+  </tr>
+  <tr>
+    <th>Vitamin C</th>
+    <td>{{nutritionInfo.hits[0].fields.nf_vitamin_c_dv}} %</td>
+  </tr>
+  <tr>
+    <th>Calcium</th>
+    <td>{{nutritionInfo.hits[0].fields.nf_calcium_dv}} %</td>
+  </tr>
+  <tr>
+    <th>Iron</th>
+    <td>{{nutritionInfo.hits[0].fields.nf_iron_dv}} %</td>
+  </tr>
+</table>
